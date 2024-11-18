@@ -17,7 +17,7 @@ opencv.fetch: .FORCE
 	cd $(DOWNLOADS.DIR) && wget $(OPENCV.URL) -O opencv-$(OPENCV.ARCHIVE) && wget $(OPENCV_CONTRIB.URL) -O opencv_contrib-$(OPENCV.ARCHIVE)
 	cd $(DOWNLOADS.DIR) && tar xf opencv-$(OPENCV.ARCHIVE) && tar xf opencv_contrib-$(OPENCV.ARCHIVE)
 
-opencv: .FORCE	
+opencv.build: .FORCE	
 	rm -rf $(OPENCV.BUILD) && mkdir -p $(OPENCV.BUILD) && mkdir -p $(INSTALLED.HOST.DIR)
 	cd $(OPENCV.BUILD) && cmake $(OPENCV.DIR) -DOPENCV_EXTRA_MODULES_PATH=$(DOWNLOADS.DIR)/opencv_contrib-$(OPENCV.VERSION)/modules -DCMAKE_INSTALL_PREFIX=$(INSTALLED.HOST.DIR) && cmake --build . && make -j8 install
 
