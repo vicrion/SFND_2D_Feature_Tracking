@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/installed.host/**",
+                "${workspaceFolder}/installed.host/**"
             ],
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/gcc",
