@@ -17,6 +17,8 @@ opencv.fetch: .FORCE
 	cd $(DOWNLOADS.DIR) && wget $(OPENCV.URL) -O opencv-$(OPENCV.ARCHIVE) && wget $(OPENCV_CONTRIB.URL) -O opencv_contrib-$(OPENCV.ARCHIVE)
 	cd $(DOWNLOADS.DIR) && tar xf opencv-$(OPENCV.ARCHIVE) && tar xf opencv_contrib-$(OPENCV.ARCHIVE)
 
+# sudo apt install libgtk-3-dev libgtk2.0-dev pkg-config
+# cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_QT=ON -D WITH_GTK=ON -D WITH_OPENGL=ON ..
 opencv.build: .FORCE	
 	rm -rf $(OPENCV.BUILD) && mkdir -p $(OPENCV.BUILD) && mkdir -p $(INSTALLED.HOST.DIR)
 	cd $(OPENCV.BUILD) && cmake $(OPENCV.DIR) -DOPENCV_EXTRA_MODULES_PATH=$(DOWNLOADS.DIR)/opencv_contrib-$(OPENCV.VERSION)/modules -DCMAKE_INSTALL_PREFIX=$(INSTALLED.HOST.DIR) && cmake --build . && make -j8 install
@@ -24,6 +26,6 @@ opencv.build: .FORCE
 BUILD.DIR=$(BASE.DIR)/build_mk
 build: .FORCE
 	rm -rf $(BUILD.DIR) && mkdir -p $(BUILD.DIR)
-	cd $(BUILD.DIR) && cmake $(BASE.DIR) -DCMAKE_INSTALL_PREFIX=$(INSTALLED.HOST.DIR) -DCMAKE_PREFIX_PATH=$(INSTALLED.HOST.DIR) -DCMAKE_BUILD_TYPE=Debug && make
+	cd $(BUILD.DIR) && cmake $(BASE.DIR) -DCMAKE_PREFIX_PATH=$(INSTALLED.HOST.DIR) -DCMAKE_BUILD_TYPE=Debug && make
 
 .FORCE:
