@@ -159,4 +159,36 @@ void detKeypointsShiTomasi(vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool b
 
 void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std::string detectorType, bool bVis)
 {
+    // Pointer to the detector
+    cv::Ptr<cv::FeatureDetector> detector;
+
+    // Choose the detector based on the input type
+    if (detectorType == "FAST")
+    {
+        detector = cv::FastFeatureDetector::create();
+    }
+    else if (detectorType == "BRISK")
+    {
+        detector = cv::BRISK::create();
+    }
+    else if (detectorType == "ORB")
+    {
+        detector = cv::ORB::create();
+    }
+    else if (detectorType == "AKAZE")
+    {
+        detector = cv::AKAZE::create();
+    }
+    else if (detectorType == "SIFT")
+    {
+        detector = cv::SIFT::create();
+    }
+    else
+    {
+        std::cerr << "Detector type " << detectorType << " is not supported!" << std::endl;
+        return;
+    }
+
+    // Detect keypoints
+    detector->detect(img, keypoints);
 }
