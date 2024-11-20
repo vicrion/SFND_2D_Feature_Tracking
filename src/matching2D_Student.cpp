@@ -18,7 +18,13 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
     }
     else if (matcherType.compare("MAT_FLANN") == 0)
     {
-        // ...
+        if (descSource.type() != CV_32F || descRef.type() != CV_32F)
+        {
+            // Convert binary descriptors to CV_32F for FLANN
+            descSource.convertTo(descSource, CV_32F);
+            descRef.convertTo(descRef, CV_32F);
+        }
+        matcher = cv::DescriptorMatcher::create(cv::DescriptorMatcher::FLANNBASED);
     }
 
     // perform matching task
@@ -30,7 +36,19 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
     else if (selectorType.compare("SEL_KNN") == 0)
     { // k nearest neighbors (k=2)
 
-        // ...
+        // k-Nearest Neighbors (k=2)
+        std::vector<std::vector<cv::DMatch>> knnMatches;
+        matcher->knnMatch(descSource, descRef, knnMatches, 2);
+
+        // Filter matches using the ratio test
+        float ratioThreshold = 0.8f; // Lowe's ratio test
+        for (const auto &knnMatch : knnMatches)
+        {
+            if (knnMatch.size() == 2 && knnMatch[0].distance < ratioThreshold * knnMatch[1].distance)
+            {
+                matches.push_back(knnMatch[0]);
+            }
+        }
     }
 }
 
