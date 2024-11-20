@@ -108,3 +108,5 @@ Pair combination - number of points - time, msec.
 **Suggestions for performance**: ORB-BRIEF, AKAZE-BRIEF, BRISK-ORB.
 
 **Suggestions for robustness**: ORB-ORB, AKAZE-AKAZE.
+
+**Overall top**: ORB-BRIEF or ORB-ORB.
