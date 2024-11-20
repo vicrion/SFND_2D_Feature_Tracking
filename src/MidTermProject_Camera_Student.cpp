@@ -139,6 +139,7 @@ int main(int argc, const char *argv[])
 
         cv::Mat descriptors;
         string descriptorType = "ORB"; // BRIEF, ORB, FREAK, AKAZE, SIFT
+        descKeypoints(dataBuffer[currIdx].keypoints, dataBuffer[currIdx].cameraImg, descriptors, descriptorType);
         //// EOF STUDENT ASSIGNMENT
 
         // push descriptors for current frame to end of data buffer
