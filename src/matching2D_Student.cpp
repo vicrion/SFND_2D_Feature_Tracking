@@ -48,10 +48,54 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
 
         extractor = cv::BRISK::create(threshold, octaves, patternScale);
     }
+    else if (descriptorType.compare("BRIEF") == 0)
+    {
+        int bytes = 32; // length of the descriptor in bytes (16, 32, or 64)
+        extractor = cv::xfeatures2d::BriefDescriptorExtractor::create(bytes);
+    }
+    else if (descriptorType.compare("ORB") == 0)
+    {
+        int nfeatures = 500;                                  // number of features to retain
+        float scaleFactor = 1.2f;                             // pyramid decimation ratio
+        int nlevels = 8;                                      // number of pyramid levels
+        int edgeThreshold = 31;                               // size of the border where features are not detected
+        int firstLevel = 0;                                   // level of the pyramid to put the source image
+        int WTA_K = 2;                                        // number of points to compare (2, 3, or 4)
+        cv::ORB::ScoreType scoreType = cv::ORB::HARRIS_SCORE; // Harris or FAST score
+        int patchSize = 31;                                   // size of the patch used by the BRIEF descriptor
+        int fastThreshold = 20;                               // FAST threshold
+        extractor = cv::ORB::create(nfeatures, scaleFactor, nlevels, edgeThreshold, firstLevel, WTA_K, scoreType, patchSize, fastThreshold);
+    }
+    else if (descriptorType.compare("FREAK") == 0)
+    {
+        bool orientationNormalized = true; // enable orientation normalization
+        bool scaleNormalized = true;       // enable scale normalization
+        float patternScale = 22.0f;        // scaling of the description pattern
+        int nOctaves = 4;                  // number of octaves covered by the detected keypoints
+        extractor = cv::xfeatures2d::FREAK::create(orientationNormalized, scaleNormalized, patternScale, nOctaves);
+    }
+    else if (descriptorType.compare("AKAZE") == 0)
+    {
+        cv::AKAZE::DescriptorType descriptorType = cv::AKAZE::DESCRIPTOR_MLDB; // descriptor type
+        int descriptorSize = 0;                                                // size of the descriptor
+        int descriptorChannels = 3;                                            // number of channels in the descriptor
+        float threshold = 0.001f;                                              // detector response threshold
+        int nOctaves = 4;                                                      // maximum octave evolution
+        int nOctaveLayers = 4;                                                 // default number of sublevels per scale level
+        extractor = cv::AKAZE::create(descriptorType, descriptorSize, descriptorChannels, threshold, nOctaves, nOctaveLayers);
+    }
+    else if (descriptorType.compare("SIFT") == 0)
+    {
+        int nfeatures = 0;               // number of best features to retain
+        int nOctaveLayers = 3;           // number of layers within each octave
+        float contrastThreshold = 0.04; // filter out weak features
+        float edgeThreshold = 10;       // filter out edge-like features
+        float sigma = 1.6;              // Gaussian smoothing
+        extractor = cv::SIFT::create(nfeatures, nOctaveLayers, contrastThreshold, edgeThreshold, sigma);
+    }
     else
     {
-
-        //...
+        throw invalid_argument("Unknown descriptor type: " + descriptorType);
     }
 
     // perform feature description
