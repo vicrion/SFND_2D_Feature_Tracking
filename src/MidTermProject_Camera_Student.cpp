@@ -138,7 +138,7 @@ int main(int argc, const char *argv[])
         //// -> BRIEF, ORB, FREAK, AKAZE, SIFT
 
         cv::Mat descriptors;
-        string descriptorType = "ORB"; // BRIEF, ORB, FREAK, AKAZE, SIFT
+        string descriptorType = "BRIEF"; // BRIEF, ORB, FREAK, AKAZE, SIFT
         descKeypoints(dataBuffer[currIdx].keypoints, dataBuffer[currIdx].cameraImg, descriptors, descriptorType);
         //// EOF STUDENT ASSIGNMENT
 
