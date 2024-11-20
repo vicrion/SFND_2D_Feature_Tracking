@@ -4,25 +4,37 @@
 
 The usage of `std::vector` could be left as-is and instead we can iterate on the index and keep track of `current` vs. `previous` using `imgIndex % bufferSize` formula. The vector is pre-allocated beforehand. Alternatively, `std::array` could be used in the same manner. 
 
+Reference: [github](https://github.com/vicrion/SFND_2D_Feature_Tracking/blob/master/src/MidTermProject_Camera_Student.cpp#L40), or refer to L40 within `MidTermProject_Camera_Student.cpp`.
+
 ### MP.2 Keypoint Detection
 
 OpenCV provides implementation for each of the detectors.
+
+Reference: [github](https://github.com/vicrion/SFND_2D_Feature_Tracking/blob/master/src/matching2D_Student.cpp#L222) or refer to L222 of `matching2D_Student.cpp`.
 
 ### MP.3 Keypoint Removal
 
 `cv::Rect::contains()` was used for ROI selection for a list of detections.
 
+Reference: [github](https://github.com/vicrion/SFND_2D_Feature_Tracking/blob/master/src/MidTermProject_Camera_Student.cpp#L106) or refer to L106 of `MidTermProject_Camera_Student.cpp`.
+
 ### MP.4 Keypoint Descriptors
 
 OpenCV provides implementation for each of the descriptors.
+
+Reference: [github](https://github.com/vicrion/SFND_2D_Feature_Tracking/blob/master/src/matching2D_Student.cpp#L56) or refer to L56 of `matching2D_Student.cpp`.
 
 ### MP.5 Descriptor Matching
 
 OpenCV provides implementation using type `cv::DescriptorMatcher::FLANNBASED`, as well as `knnMatch()`.
 
+Reference: [github](https://github.com/vicrion/SFND_2D_Feature_Tracking/blob/master/src/matching2D_Student.cpp#L19) or refer to L19 of `matching2D_Student.cpp`.
+
 ### MP.6 Descriptor Distance Ratio
 
 The `ratioThreshold` can be used for K-nn based matched points using the formula: `distance_best < ratio * distance_secondbest`.
+
+Reference: [github](https://github.com/vicrion/SFND_2D_Feature_Tracking/blob/master/src/matching2D_Student.cpp#L47) or refer to L47 of `matching2D_Student.cpp`.
 
 ### MP.7 Performance Evaluation 1
 
