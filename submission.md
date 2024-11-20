@@ -39,29 +39,29 @@ Number of matched keypoints using all combinations of detectors and descriptors 
 
 * Average points per all iterations is presented.
 
-BRISK-BRIEF: 145
-BRISK-ORB: 110
-BRISK-FREAK: 122
-BRISK-AKAZE: -
-BRISK-SIFT: 181 (flann)
+* BRISK-BRIEF: 145
+* BRISK-ORB: 110
+* BRISK-FREAK: 122
+* BRISK-AKAZE: -
+* BRISK-SIFT: 181 (flann)
 
-ORB-BRIEF: 51
-ORB-ORB: 86
-ORB-FREAK: 42
-ORB-AKAZE: -
-ORB-SIFTR: 89
+* ORB-BRIEF: 51
+* ORB-ORB: 86
+* ORB-FREAK: 42
+* ORB-AKAZE: -
+* ORB-SIFTR: 89
 
-AKAZE-BRIEF: 137
-AKAZE-ORB: 129
-AKAZE-FREAK: 130
-AKAZE-AKAZE: 139
-AKAZE-SIFT: 138
+* AKAZE-BRIEF: 137
+* AKAZE-ORB: 129
+* AKAZE-FREAK: 130
+* AKAZE-AKAZE: 139
+* AKAZE-SIFT: 138
 
-SIFT-BRIEF: 76
-SIFT-ORB: -
-SIFT-FREAK: 65
-SIFT-AKAZE: -
-SIFT-SIFT: 88
+* SIFT-BRIEF: 76
+* SIFT-ORB: -
+* SIFT-FREAK: 65
+* SIFT-AKAZE: -
+* SIFT-SIFT: 88
 
 Most of the combinations are viable options at this step, the AKAZE descriptor implementation requires the same type of the detector. All of the combinations presented a good number of matches, otherwise.
 
@@ -74,35 +74,37 @@ Time for keypoint detection - descriptor extraction.
 
 Pair combination - number of points - time, msec.
 ---
-BRISK-BRIEF: 145 - 0.75
-BRISK-ORB: 110 - 3.4
-BRISK-FREAK: 122 - 25
-BRISK-AKAZE: -
-BRISK-SIFT: 181 (flann) - 21.5
+* BRISK-BRIEF: 145 - 0.75
+* BRISK-ORB: 110 - 3.4
+* BRISK-FREAK: 122 - 25
+* BRISK-AKAZE: -
+* BRISK-SIFT: 181 (flann) - 21.5
 
-ORB-BRIEF: 51 - 0.7
-ORB-ORB: 86 - 5.9
-ORB-FREAK: 42 - 28
-ORB-AKAZE: -
-ORB-SIFT: 89 - 31
+* ORB-BRIEF: 51 - 0.7
+* ORB-ORB: 86 - 5.9
+* ORB-FREAK: 42 - 28
+* ORB-AKAZE: -
+* ORB-SIFT: 89 - 31
 
-AKAZE-BRIEF: 137 - 0.67
-AKAZE-ORB: 129 - 2.29
-AKAZE-FREAK: 130 - 25
-AKAZE-AKAZE: 139 - 40
-AKAZE-SIFT: 138 - 17
+* AKAZE-BRIEF: 137 - 0.67
+* AKAZE-ORB: 129 - 2.29
+* AKAZE-FREAK: 130 - 25
+* AKAZE-AKAZE: 139 - 40
+* AKAZE-SIFT: 138 - 17
 
-SIFT-BRIEF: 76 - 0.75
-SIFT-ORB: -
-SIFT-FREAK: 65 - 31
-SIFT-AKAZE: -
-SIFT-SIFT: 88 - 57
+* SIFT-BRIEF: 76 - 0.75
+* SIFT-ORB: -
+* SIFT-FREAK: 65 - 31
+* SIFT-AKAZE: -
+* SIFT-SIFT: 88 - 57
 
 ### Suggestions
 
 * Number of points: it is probable best to pick a value in the middle as too many points can indicate increased computational time for further processing; or we could even choose from lower numbers. 
 * Computation time: we want to minimize as much as possible.
 * Combination: it is likely the same type of detector-descriptor to perform better in practice as they were originally designed as a whole (unless they are re-implemented to work together). There could be some OpenCV implementation details that favor such combination and makes it more robust.
+* License: SIFT might be difficult to use for its licence restrictions.
 
-Suggestions for performance: ORB-BRIEF, AKAZE-BRIEF, BRISK-ORB.
-Suggestions for robustness: ORB-ORB, AKAZE-AKAZE, SIFT-SIFT.
+**Suggestions for performance**: ORB-BRIEF, AKAZE-BRIEF, BRISK-ORB.
+
+**Suggestions for robustness**: ORB-ORB, AKAZE-AKAZE.
